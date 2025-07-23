@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MizeRestClient", "MizeRestClient\MizeRestClient.csproj", "{89845DDF-A814-4C16-B548-2A356D4DAB4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MizeRestClient.Tests", "MizeRestClient.Tests\MizeRestClient.Tests.csproj", "{08D6FF7B-F4DC-4BD4-9244-F7EDDA69CCCA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89845DDF-A814-4C16-B548-2A356D4DAB4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89845DDF-A814-4C16-B548-2A356D4DAB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89845DDF-A814-4C16-B548-2A356D4DAB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89845DDF-A814-4C16-B548-2A356D4DAB4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08D6FF7B-F4DC-4BD4-9244-F7EDDA69CCCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08D6FF7B-F4DC-4BD4-9244-F7EDDA69CCCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08D6FF7B-F4DC-4BD4-9244-F7EDDA69CCCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08D6FF7B-F4DC-4BD4-9244-F7EDDA69CCCA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0AD305EF-7F45-4866-907E-A81CE161959F}
+	EndGlobalSection
+EndGlobal
