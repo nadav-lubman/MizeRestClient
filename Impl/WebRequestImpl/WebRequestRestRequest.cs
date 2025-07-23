@@ -1,10 +1,11 @@
 ﻿using System.Net;
 using System.Text;
+using MizeRestClient.Core;
 using MizeRestClient.Interfaces;
 
 namespace MizeRestClient.Impl.WebRequestImpl
 {
-    public class WebRequestRestRequest : IRestRequest
+    public class WebRequestRestRequest : ConfigurableBase<WebRequestRestRequest>, IRestRequest
     {
         private readonly string m_url;
         private string m_authHeader;
@@ -15,19 +16,6 @@ namespace MizeRestClient.Impl.WebRequestImpl
             m_url = url;
             m_authHeader = authHeader;
             m_headers = headers;
-        }
-
-        public IRestRequest WithBasicAuth(string user, string pass)
-        {
-            var encoded = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{user}:{pass}"));
-            m_authHeader = $"Basic {encoded}";
-            return this;
-        }
-
-        public IRestRequest WithHeader(string key, string value)
-        {
-            m_headers[key] = value;
-            return this;
         }
 
         public async Task<string> GetAsync()
@@ -79,6 +67,16 @@ namespace MizeRestClient.Impl.WebRequestImpl
             {
                 request.Headers[kvp.Key] = kvp.Value;
             }
+        }
+
+        IRestRequest IConfigurable<IRestRequest>.WithBasicAuth(string user, string pass)
+        {
+            return WithBasicAuth(user, pass);
+        }
+
+        IRestRequest IConfigurable<IRestRequest>.WithHeader(string key, string value)
+        {
+            return WithHeader(key, value);
         }
     }
 }

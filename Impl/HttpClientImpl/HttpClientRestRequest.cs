@@ -1,15 +1,14 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
+using MizeRestClient.Core;
 using MizeRestClient.Interfaces;
 
 namespace MizeRestClient.Impl.HttpClientImpl
 {
-    public class HttpClientRestRequest : IRestRequest
+    public class HttpClientRestRequest : ConfigurableBase<HttpClientRestRequest>, IRestRequest
     {
         private readonly HttpClient m_client;
         private readonly string m_url;
-        private string m_authHeader;
-        private readonly Dictionary<string, string> m_headers;
 
         public HttpClientRestRequest(HttpClient client, string url, string authHeader, Dictionary<string, string> headers)
         {
@@ -17,19 +16,6 @@ namespace MizeRestClient.Impl.HttpClientImpl
             m_url = url;
             m_authHeader = authHeader;
             m_headers = headers;
-        }
-
-        public IRestRequest WithBasicAuth(string user, string pass)
-        {
-            string encoded = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{user}:{pass}"));
-            m_authHeader = $"Basic {encoded}";
-            return this;
-        }
-
-        public IRestRequest WithHeader(string key, string value)
-        {
-            m_headers[key] = value;
-            return this;
         }
 
         public async Task<string> GetAsync()
@@ -75,6 +61,16 @@ namespace MizeRestClient.Impl.HttpClientImpl
             {
                 request.Headers.Add(kvp.Key, kvp.Value);
             }  
+        }
+
+        IRestRequest IConfigurable<IRestRequest>.WithBasicAuth(string user, string pass)
+        {
+            return WithBasicAuth(user, pass);
+        }
+
+        IRestRequest IConfigurable<IRestRequest>.WithHeader(string key, string value)
+        {
+            return WithHeader(key, value);
         }
     }
 }
